@@ -1,0 +1,19 @@
+<!-- templates/sawah/includes/top_rated_hotels.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Rated Hotels</title>
+</head>
+<body>
+    <h1>Top Rated Hotels</h1>
+    <ul>
+        {% for hotel in top_rated_hotels %}
+            <li>
+                Hotel: {{ hotel.name }}<br>
+                Average Rating: {{ hotel.avg_rating|default:"Not rated" }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

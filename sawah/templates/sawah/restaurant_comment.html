@@ -1,0 +1,112 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel story</title>
+    <link rel="stylesheet" href="{% static 'sawah/css/comment.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body data-aos="flip-left" data-aos-duration="2000">
+    <div class="contanair">
+        <div class="main">
+            <div class="left">
+                <h3>{% trans 'Tell us your story about' %}</h3>
+                <img src="{{ restaurant.image.url}}" data-aos="fade-up-right" data-aos-duration="3000" />
+                <p data-aos="fade-up-right" data-aos-duration="3000">{{restaurant.name}}</p>
+            </div>
+            <div class="vertical-line"></div>
+            <div data-aos="fade-up-left" data-aos-duration="3000" class="right">
+                <form action="{% url 'sawah:restaurant_comment' restaurant_id=restaurant.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="inp">
+                        <div class="vertical-line-small"></div>
+                        {{ form.body }}
+                    </div>
+                    <div class="inp">
+                        <div class="vertical-line-small"></div>
+                        {{ form.story }}
+                    </div>
+                    <h4>{% trans 'what would you rate your trip?' %}</h4>
+                    <div class="star-rating" id="star-rating">
+                        <span class="star" data-rating="1">&#9733;</span>
+                        <span class="star" data-rating="2">&#9733;</span>
+                        <span class="star" data-rating="3">&#9733;</span>
+                        <span class="star" data-rating="4">&#9733;</span>
+                        <span class="star" data-rating="5">&#9733;</span>
+                        <input type="hidden" name="rating" id="rating-input">
+                    </div>
+                    <h4>{% trans 'who did you travel with?' %}</h4>
+                    <div class="tt">
+                        {% for choice in form.travel_with.field.choices %}
+                            <input type="radio" id="{{ choice.0 }}" name="travel_with" value="{{ choice.0 }}" />
+                            <label for="{{ choice.0 }}" title="text">{{ choice.1 }}</label>
+                        {% endfor %}
+                    </div>                    
+                    <h4>{% trans 'when did you travel with?' %}</h4>
+                    {{ form.travel_date }}
+                    <h4>{% trans 'what is the best time to go?' %}</h4>
+                    <div class="tt">
+                        {% for choice in form.best_time.field.choices %}
+                            <input type="radio" id="{{ choice.0 }}" name="best_time" value="{{ choice.0 }}" />
+                            <label for="{{ choice.0 }}" title="text">{{ choice.1 }}</label>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="inp2">
+                        <div class="vertical-line-small"></div>
+                        {{ form.advice }}
+                    </div>
+                    <input class="sub" type="submit" name="submit" value="{% trans 'Upload' %}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'sawah/js/scripts.js' %}"></script>
+    <script>
+        AOS.init();
+        // Get all the stars
+const stars = document.querySelectorAll('.star');
+
+// Get the hidden input field
+const ratingInput = document.getElementById('rating-input');
+
+// Log to check if stars and input field are selected correctly
+console.log(stars);
+console.log(ratingInput);
+
+// Add click event listeners to each star
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        // Log to check if the click event is triggered
+        console.log('Star clicked');
+        
+        // Get the rating value from the data-rating attribute
+        const rating = star.getAttribute('data-rating');
+        
+        // Log to check if the rating is retrieved correctly
+        console.log('Rating:', rating);
+        
+        // Update the value of the hidden input field
+        ratingInput.value = rating;
+        
+        // Log to check if the input field is updated correctly
+        console.log('Rating input value:', ratingInput.value);
+        
+        // Update the appearance of stars based on the selected rating
+        stars.forEach(s => {
+            if (s.getAttribute('data-rating') <= rating) {
+                s.classList.add('selected');
+            } else {
+                s.classList.remove('selected');
+            }
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

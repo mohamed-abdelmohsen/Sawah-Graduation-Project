@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Listings</title>
+</head>
+<body>
+    <h1>Filter Hotels</h1>
+
+    <form method="get">
+        {{ filter.form.as_p }}
+
+        <section id="hr">
+            <h6 class="rating" data-aos="fade-up-left" data-aos-duration="3000">THE RATING</h6>
+            <ul>
+                <li>
+                    <input class="cc" type="checkbox" name="rating" value="5">
+                    <span class="star" data-rating="1">&#9733;</span>
+                    <span class="star" data-rating="2">&#9733;</span>
+                    <span class="star" data-rating="3">&#9733;</span>
+                    <span class="star" data-rating="4">&#9733;</span>
+                    <span class="star" data-rating="5">&#9733;</span>
+                </li>
+                <li>
+                    <input class="cc" type="checkbox" name="rating" value="4">
+                    <span class="star" data-rating="1">&#9733;</span>
+                    <span class="star" data-rating="2">&#9733;</span>
+                    <span class="star" data-rating="3">&#9733;</span>
+                    <span class="star" data-rating="4">&#9733;</span>
+                </li>
+                <li>
+                    <input class="cc" type="checkbox" name="rating" value="3">
+                    <span class="star" data-rating="1">&#9733;</span>
+                    <span class="star" data-rating="2">&#9733;</span>
+                    <span class="star" data-rating="3">&#9733;</span>
+                </li>
+                <!-- Add more checkboxes as needed -->
+            </ul>
+        </section>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Hotels</h2>
+    <ul>
+        {% for hotel in filter.qs %}
+            <li>
+                <h3>{{ hotel.name }}</h3>
+                <p>{{ hotel.description }}</p>
+                <p>Location: {{ hotel.location }}</p>
+                <p>Ratings:</p>
+                <ul>
+                    {% for rating in hotel.ratings.all %}
+                        <li>{{ rating.rating }}</li>
+                    {% empty %}
+                        <li>No ratings available.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>No hotels found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

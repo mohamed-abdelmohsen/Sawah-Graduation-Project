@@ -1,0 +1,1004 @@
+{% load i18n %}
+{%load static%}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City</title>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poltawski+Nowy&family=Poppins&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&family=Poltawski+Nowy&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="{% static 'sawah/css/city_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'sawah/css/normalize.css' %}">
+
+    <!-- font Awesome -->
+    <link rel="stylesheet" href="{% static 'sawah/css/all.min.css' %}">
+
+    <!-- bootstrab link -->
+    <link rel="stylesheet" href="{% static 'sawah/css/bootstrap.min.css' %}">
+    <style>
+        .star-rating {
+            font-size: 24px; /* Adjust the size of stars */
+        }
+        
+        .star {
+            color: rgb(248, 150, 21); 
+        }
+        
+
+        .empty-star {
+            color: rgba(221, 156, 82, 0.61);
+        }
+        .profile-image {
+            width: 40px; /* Adjust width as needed */
+            height: 40px; /* Adjust height as needed */
+            border-radius: 50%; /* Make the image round */
+            object-fit: cover; /* Ensure the image covers the element fully */
+            margin-right: 10px; /* Add some space to the right of the image */
+            margin-left: 20px;
+            margin-bottom: 35px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .s1 {
+            /* Add styles for the Sign Up button if needed */
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #333;
+            margin-left: 10px; /* Adjust space as needed */
+        }
+        
+        .s1:hover {
+            background-color: #e2e6ea;
+            color: #000;
+        }
+        .custom-btn {
+            transition: background-color 0.3s ease;
+        }
+        
+        .custom-btn:hover {
+            background-color:rgba(221, 156, 82, 0.61);
+            border-color: rgba(221, 156, 82, 0.61);
+            color: white; /* Optional: Change the text color to make it more readable */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <script src="{% static 'sawah/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- start header -->
+    <div class="header">
+        <div class="container">
+            <a href="{% url 'sawah:home' %}" class="logo"> SAWAH</a>
+            <ul class="main-nav">
+                <form id="search-form" class="input-group mx-auto" method="get" action="{% url 'sawah:search' %}">
+                    <input type="text" class="form-control" id="search-input" name="query" placeholder="Search for places, resturants and hotels....">
+                    <button class="btn btn-outline-secondary custom-btn" type="submit" id="button-addon2">
+                        Search
+                    </button>
+                </form>
+                {% if user.is_authenticated %}
+                <div class="user-info">
+                    {% if user.profile.photo %}
+                    <a href="{{ user.profile.get_absolute_url }}">
+                        <img src="{{ user.profile.photo.url }}" alt="{{ user.username }}" class="profile-image">
+                    </a>
+                    {% else %}
+                        <img src="{% static 'sawah/images/default.jpeg' %}" alt="Default Image" class="profile-image">
+                    {% endif %}
+                </div>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="s1">Sign In</a></li>
+            {% endif %}
+            <li><a href="{% url 'sawah:scan_face_view'%}" class="s2">Scan Me</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- End header -->
+    <!-- Strat Section1 -->
+    <div class="landing">
+        <div class="text">
+            <h5> <span> {{city.name}} </span> For Ancient <br> Museums And <br> Food. </h5>
+            <p>{{city.name}} is the third-largest city in Egypt by area after <br> Cairo and Alexandria , and fourth-largest
+                city in <br> Africa by population after Kinshasa, Lagos, and <br> Cairo.</p>
+        </div>
+        <div class="imgs">
+            {% with city.images.all as images %}
+            {% if images|length > 0 %}
+            <img src="{{ images.0.image.url }}" class="img1" width="230px" height="415px" alt="First image for {{ city.name }}">
+            {% endif %}
+            {% if images|length > 1 %}
+                <img src="{{ images.1.image.url }}" class="img2" width="250px" height="530px" alt="Second image for {{ city.name }}">
+            {% endif %}
+            {% if images|length > 2 %}
+                <img src="{{ images.2.image.url }}" class="img3" width="220px" height="200px" alt="Third image for {{ city.name }}">
+            {% endif %}
+            {% endwith%}
+        </div>
+        <div class="icons">
+            <ul>
+                <li><a href="#" class="a1">Location</a></li>
+                <li><a href="#" class="a2">{{city.name}} places</a></li>
+                <li><a href="#" class="a3">{{city.name}} hotels</a></li>
+                <li><a href="#" class="a4">{{city.name}} restuarant</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Section1 -->
+
+    <!-- Start section2 -->
+       
+    <div id="slider" class="container-fluid">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide">
+            <div class="carousel-inner overflow-visible">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Visited This Year </div>
+                                {% for landmark in landmarks|slice:"0:4"%}
+                                <div class="col"> <!-- -->
+                                    <div class="card"> 
+                                        <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                        <div class="card-body">
+                                            <i class="fa-regular fa-heart"></i>
+                                            <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                            <div class="star-rating">
+                                                {% for i in 5|get_range %}
+                                                {% if i <= landmark.avg_rating %}
+                                                    <span class="star">&#9733;</span> <!-- Filled star -->
+                                                {% else %}
+                                                    <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                                {% endif %}
+                                            {% endfor %}
+                                            </div>
+                                            <div class="spann">
+                                                <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                                <span class="num2">٠1034</span>
+                                            </div>
+                                            <p>breakfast & indian <br> food</p>
+                                            <i class="fa-solid fa-location-dot" id="i"> </i>
+                                            <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                        </div>
+                                    </div>
+                                </div> <!-- -->
+                                {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Visited This Year 2</div>
+                            {% for landmark in landmarks|slice:"4:8"%}
+
+                            <div class="col">
+                                <div class="card"> 
+                                    <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= landmark.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Visited This Year 3</div>
+                            {% for landmark in landmarks|slice:"4:8"%}
+
+                            <div class="col">
+                                <div class="card"> 
+                                    <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= landmark.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-left fa-3x"></i></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-right fa-3x"></i></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- End section2 -->
+
+    <!-- Start Section3 -->
+    
+    <div id="slider" class="container-fluid  ">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Best Popular In {{city.name}}</div>
+                            {% for landmark in top_rated_landmarks|slice:"0:4"%}
+
+                            <div class="col">
+                                <div class="card"> 
+                                    <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= landmark.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Best Popular In {{city.name}}</div>
+                            {% for landmark in top_rated_landmarks|slice:"4:8"%}
+
+                            <div class="col">
+                                <div class="card"> 
+                                    <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= landmark.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Best Popular In {{city.name}}</div>
+                            {% for landmark in top_rated_landmarks|slice:"8:12"%}
+
+                            <div class="col">
+                                <div class="card"> 
+                                    <a href="{{ landmark.get_absolute_url }}"><img src="{{landmark.image.url}}" class="card-img-top" alt="try again"></a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{landmark.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= landmark.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ landmark.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{landmark.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-left fa-3x"></i></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-right fa-3x"></i></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- End Section3 -->
+
+    <!-- start section4 -->
+    
+    <div id="portofolio" class="container-fluid  bg-light">
+        <h2 class="text-center"> October Events </h2>
+        <div id="slider" class="container-fluid  ">
+            <div id="carouselExampleRide" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-inner overflow-visible">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="container text-center">
+                            <div class="row">
+                                {% for event in events|slice:"0:3" %}
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="{{event.image.url}}" class="card-img-top">
+                                        <div class="card-body">
+                                            <i class="fa-regular fa-heart" style="position: absolute; top:20px; padding: 8px;  width: 50px; height: 43px; right: 12px; background-color:orange;  border-radius: 50px;"></i>
+                                            <h5> Woodstock Festival </h5>
+                                            <p> million people to celebrate<br> peace and love with iconic
+                                                <br>performances
+                                            </p>
+                                            <a href="#" class="btn btn-primary">{{event.date}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <div class="container text-center">
+                            <div class="row">
+                                {% for event in events|slice:"3:6" %}
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="{{event.image.url}}" class="card-img-top">
+                                        <div class="card-body">
+                                            <i class="fa-regular fa-heart" style="position: absolute; top:20px; padding: 8px;  width: 50px; height: 43px; right: 12px; background-color:orange;  border-radius: 50px;"></i>
+                                            <h5> Woodstock Festival </h5>
+                                            <p> million people to celebrate<br> peace and love with iconic
+                                                <br>performances
+                                            </p>
+                                            <a href="#" class="btn btn-primary">{{event.date}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                            class="fa-solid fa-angle-left fa-3x"></i></span>
+                    <span class="visually-hidden">Previous</span>
+                </button> 
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"><i
+                            class="fa-solid fa-angle-right fa-3x"></i></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End section4 -->
+
+    <!-- start section5 -->
+   
+
+
+    <!-- End section5 -->
+
+    <!-- start section6 -->
+
+    <div id="slider" class="container-fluid  ">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner overflow-visible">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Local Egyptian Food Restaurant</div>
+                            {% for restaurant in restaurants|slice:"0:4"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ restaurant.get_absolute_url }}">
+                                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{restaurant.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= restaurant.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ restaurant.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{restaurant.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Local Egyptian Food Restaurant</div>
+                            {% for restaurant in top_rated_restaurants|slice:"4:8"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ restaurant.get_absolute_url }}">
+                                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{restaurant.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= restaurant.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ restaurant.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{restaurant.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Local Egyptian Food Restaurant</div>
+                            {% for restaurant in restaurants|slice:"8:12"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ restaurant.get_absolute_url }}">
+                                        <img src="{{ restaurant.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{restaurant.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= restaurant.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ restaurant.avg_rating|default:"No rating yet" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{restaurant.city}}<br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-left fa-3x"></i></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-right fa-3x"></i></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- End section6 -->
+
+    <!-- start section7 -->
+    <div class="likes">
+        <p class="p1">You might like this <span>(Based on your previous history)</span></p>
+        <div class="par">
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img17.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img15.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img16.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img21.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img28.jfif'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img29.jfif'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img30.jfif'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img20.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{% static 'sawah/images/img18.jpg'%}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <i class="fa-regular fa-heart"></i> 
+                          <h5>Grill The Blue<br> restaurant</h5>
+                          <div class="star-rating">
+                              <span class="star" data-rating="1">★</span>
+                              <span class="star" data-rating="2">★</span>
+                              <span class="star" data-rating="3">★</span>
+                              <span class="star" id="s4" data-rating="4">★</span>
+                              <span class="star" id="s5" data-rating="5">★</span>
+                              <span class="num1">4.0</span>
+                           </div>
+                          <p>breakfast & indian <br> food</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    
+    
+    </div>
+    <!-- end section7 -->
+
+    <!-- start section8 -->
+    
+    <div id="slider" class="container-fluid">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner overflow-visible">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Popular Hotels </div>
+                            {% for hotel in hotels|slice:"0:4"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ hotel.get_absolute_url }}">
+                                        <img src="{{ hotel.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{hotel.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= hotel.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ hotel.avg_rating|default:"Not rated" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{hotel.city}} <br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Popular Hotels 2</div>
+                            {% for hotel in hotels|slice:"4:8"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ hotel.get_absolute_url }}">
+                                        <img src="{{ hotel.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{hotel.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= hotel.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ hotel.avg_rating|default:"Not rated" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{hotel.city}} <br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="textt">The Most Popular Hotels 3</div>
+                            {% for hotel in hotels|slice:"8:12"%}
+                            <div class="col"> <!-- -->
+                                <div class="card"> 
+                                    <a href="{{ hotel.get_absolute_url }}">
+                                        <img src="{{ hotel.image.url }}" class="card-img-top" alt="{{ hotel.name }}">
+                                    </a>
+                                    <div class="card-body">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <h5>{{hotel.name|truncatechars:"15"}} <br> Vibe</h5>
+                                        <div class="star-rating">
+                                            {% for i in 5|get_range %}
+                                            {% if i <= hotel.avg_rating %}
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            {% else %}
+                                                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                                            {% endif %}
+                                        {% endfor %}
+                                        </div>
+                                        <div class="spann">
+                                            <span class="num1">{{ hotel.avg_rating|default:"Not rated" }}</span>
+                                            <span class="num2">٠1034</span>
+                                        </div>
+                                        <p>breakfast & indian <br> food</p>
+                                        <i class="fa-solid fa-location-dot" id="i"> </i>
+                                        <a>{{hotel.city}} <br> <span> Governorate </span> </a>
+                                    </div>
+                                </div>
+                            </div> <!-- -->
+                            {% endfor %}
+                        </div>
+                        <button class="btn-v">View More</button>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"><i
+                    class="fa-solid fa-angle-left fa-3x"></i></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"><i
+                        class="fa-solid fa-angle-right fa-3x"></i></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- end section8 -->
+
+     <!-- start footer -->
+      <div class="footer"></div>
+     <!-- end footer -->
+
+
+
+     <script src="./js/bootstrap.bundle.min.js"></script>
+     <script src="./js/script.js"></script>
+     <script>
+        var mycarousel = document.querySelector('#carouselExampleDark')
+        var cerousel = new bootstrap.cerousel(mycarousel, {
+            interval: false,
+            wrap: false,
+          })  
+     </script>
+
+</body>
+
+</html>

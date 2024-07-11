@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>LOG IN</title>
+    <link rel="stylesheet" href=" css/style.css"> 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/edit_profile.css' %}">
+    <style>
+        .btn {
+            /* Your button styling */
+            padding: 10px 20px;
+            color: rgb(44, 36, 36);
+            text-decoration: none;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #f3f5f7;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+<form action="" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+<div  class="bbb"   data-aos="fade-up-left"  data-aos-duration="3000">
+    <div class="demo"  >
+        <a href="{% url 'profile' user_id=user.id %}" class="btn">&times;</a>
+    </div>
+    <div>
+        <h5  data-aos="fade-up-right"  data-aos-duration="3000" > <b>Edit your account </b>   </h5>
+    {{user_form.username}}
+    {{user_form.first_name}}
+    {{user_form.email}}
+    {{profile_form.date_of_birth}}
+    <button class="c1 "  data-aos="fade-up-right"  data-aos-duration="3000">Save changes</button>
+     
+    </div>
+    
+    <div>
+        {% if profile_form.instance.photo %}
+            <img src="{{ profile_form.instance.photo.url }}" alt="Current profile photo" class="mmm1" data-aos="fade-up-right" data-aos-duration="3000">
+        {% endif %}
+        
+        <input id="photo-input" type="file" name="photo" style="display: none;">
+        <button type="button" class="c2" data-aos="fade-up-right" data-aos-duration="3000" onclick="document.getElementById('photo-input').click();">Edit</button>
+    </div>
+    
+    
+
+   
+    </div>
+  
+ <div class="mmm">
+           
+        </div>
+ 
+
+
+    </form>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
+    </body>
+</html>

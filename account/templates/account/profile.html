@@ -1,0 +1,280 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/profile.css'%}">
+</head>
+<body>
+    <div class="nav">
+        <a href="{% url 'sawah:home' %}"><h1>SAWAH</h1></a>
+        <button class="n1" ><strong>Scan Me</strong></button>        
+    </div>
+        <hr>
+    <div class="A">
+      <br><br><br><br><br><br><br><br><br><br><br>
+        <h2><a href="{% url 'edit' %}">Edit Your Profile</a></h2>
+      <br><br><br><br><br><br><br><br><br><br><br>   
+    </div>
+    <hr class="A1">
+
+    <hr class="A2">
+    <div class="B">
+      <button class="B1"> Like</button>  
+      <button class="B2"> Comments</button>  
+      <form method="post" action="{%url 'logout'%}">
+        {% csrf_token %}
+        <button type="submit" class="B3">Log Out</button>
+    </form>
+    </div>
+    <hr class="A3">
+   <h2 class="v">What You Liked</h2>
+
+
+   <section class="g">
+    <div class="g1">
+         
+        <h3><a href="{% url 'liked_places' user_id=user.id %}">Liked Places</a></h3>
+       <hr>
+        <div class="l">
+            
+       <div class="v1">
+        <img src="{% static 'account/images/p1.jpg'%}">  
+        <h4>Pyramid area</h4>
+       </div>
+       <div class="v2">
+        <img src="{% static 'account/images/p2.jpg'%}">
+        <h4>The Pyramid</h4>
+       </div>
+        </div>
+    </div>
+
+
+    <div class="g2">
+        <a href="{% url 'liked_restaurants' user_id=user.id %}"><h3>Liked Resturant</h3></a>
+       <hr>
+        <div class="l1">
+            
+       <div class="k">
+        <img src="{% static 'account/images/r1.jpg'%}">  
+        <h4>Pyramid area</h4>
+       </div>
+       <div class="k2">
+        <img src="{% static 'account/images/r2.jpg'%}">
+        <h4>The Pyramid</h4>
+       </div>
+        </div>
+    </div>
+
+
+    <div class="g3">
+      <a href="{% url 'liked_hotels' user_id=user.id %}"><h3>Liked Hotels</h3></a>
+      <hr>
+        <div class="l2">
+            
+       <div class="o">
+        <img src="{% static 'account/images/h1.jpg'%}">  
+        <h4>Pyramid area</h4>
+       </div>
+       <div class="o2">
+        <img src="{% static 'account/images/h2.jpg'%}">
+        <h4>The Pyramid</h4>
+       </div>
+        </div>
+    </div>
+
+
+   </section>
+   <hr class="x">
+
+   <h2 class="w">Your Comments</h2>
+   <section class="q">
+         <div class="q1">
+               <a href="{% url 'landmarks_comment' user_id=user.id%}"><h3>Where To Go</h3></a>
+               <hr>
+               <div class="my">
+                <section> 
+
+                   <div class="im">
+                        <img class="iii" src="{{user.profile.photo.url}}" alt="">
+                        <h6 class="aml">{{user.first_name}}</h6>
+                      <div class="star-rating2">
+                          <span class="star" data-rating="1">★</span>
+                           <span class="star" data-rating="2">★</span>
+                           <span class="star" data-rating="3">★</span>
+                           <span class="star" id="s4" data-rating="4">★</span>
+                          <span class="star" id="s5" data-rating="5">★</span>
+
+                         <div class="spann2">
+                             <span class="num11">5.0 </span>
+                         </div>
+         
+                        </div>
+                        
+                    </div>  
+
+
+                </section>
+               <p class="re"> the most comfortable i have ever seen good food</p>
+
+             </div>
+            </section>
+           
+           <section > 
+              <div class="im1">
+
+                  <img class="iii1" src="{{user.profile.photo.url}}" alt="">
+                  <h6 class="aml1">{{user.first_name}}</h6>
+                 <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                      <span class="star" data-rating="2">★</span>
+                      <span class="star" data-rating="3">★</span>
+                      <span class="star" id="s4" data-rating="4">★</span>
+                     <span class="star" id="s5" data-rating="5">★</span>
+     
+     
+                       <div class="spann21">
+                            <span class="num111">5.0 </span>
+                       </div>
+                   </div>
+          
+           </div></section>
+           <p class="re1"> the most comfortable i have ever seen good food</p>
+           
+     
+           </div>
+     
+           </section> 
+           
+           <section > 
+            <div class="im3">
+
+                <img class="iii3" src="{{user.profile.photo.url}}" alt="">
+                <h6 class="aml3">{{user.first_name}}</h6>
+               <div class="star-rating2">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                   <span class="star" id="s5" data-rating="5">★</span>
+   
+   
+                     <div class="spann23">
+                          <span class="num111">5.0 </span>
+                     </div>
+                 </div>
+        
+         </div></section>
+         <p class="re3"> the most comfortable i have ever seen good food</p>
+         
+   
+         </div>
+   
+         </section> 
+
+           <section > 
+            <div class="im2">
+
+                <img class="iii2" src="{{user.profile.photo.url}}" alt="">
+                <h6 class="aml2">{{user.first_name}}</h6>
+               <div class="star-rating2">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                   <span class="star" id="s5" data-rating="5">★</span>
+   
+   
+                     <div class="spann22">
+                          <span class="num112">5.0 </span>
+                     </div>
+                 </div>
+        
+         </div></section>
+         <p class="re2"> the most comfortable i have ever seen good food</p>
+         
+   
+         </div>
+   
+         </section> 
+         </div>
+             
+        </div>
+
+
+      <div class="q2">
+          <a href="{% url 'restaurants_comment' user_id=user.id%}"><h3>Food Resturant</h3></a>
+          <hr>
+         <div>
+            <section> 
+
+                <div class="im">
+                     <img class="iii" src="{{user.profile.photo.url}}" alt="">
+                     <h6 class="aml">{{user.first_name}}</h6>
+                   <div class="star-rating2">
+                       <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+
+                      <div class="spann2">
+                          <span class="num11">5.0 </span>
+                      </div>
+      
+                     </div>
+                     
+                 </div>  
+
+
+             </section>
+             <p class="re"> the most comfortable i have ever seen good food</p>
+
+           </div>
+          </section> 
+        </div>
+      </div>
+   </section>
+
+   <div class="q3">
+    <a href="{% url 'hotels_comment' user_id=user.id%}"><h3>Hotels</h3>
+    </a>
+   <hr>
+   <div>
+    <section > 
+        <div class="im">
+
+            <img class="iii" src="{{user.profile.photo.url}}" alt="">
+            <h6 class="aml">{{user.first_name}}</h6>
+           <div class="star-rating2">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" id="s4" data-rating="4">★</span>
+               <span class="star" id="s5" data-rating="5">★</span>
+
+
+                 <div class="spann2">
+                      <span class="num11">5.0 </span>
+                 </div>
+             </div>
+    
+     </div></section>
+     <p class="re"> the most comfortable i have ever seen good food</p>
+     
+
+     </div>
+
+     </section> 
+   </div>   
+    
+
+   
+</div>
+           
+    
+     
+</body>

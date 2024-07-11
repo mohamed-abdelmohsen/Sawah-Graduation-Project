@@ -1,0 +1,3 @@
+{% for city in city %}
+<a href="{% url 'sawah:city_detail' city_id=city.pk%}">{{city.name}}</a>
+{% endfor %}

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+ <title>{% block title %}{% endblock %}</title>
+ <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+ <div id="header">
+ <span class="logo">Sawah</span>
+ {% if request.user.is_authenticated %}
+ <ul class="menu">
+ <li {% if section == "dashboard" %}class="selected"{% endif %}>
+ <a href="{% url "dashboard" %}">My dashboard</a>
+ <a href="{% url 'sawah:home'%}">Home</a>
+ </li>
+</ul>
+{% endif %}
+<span class="user">
+    {% if request.user.is_authenticated %}
+    {{ request.user.first_name|default:request.user.username }}
+    {% if request.user.profile.photo %}
+      <img src="{{ request.user.profile.photo.url }}" alt="profile photo" width="50" height="50">
+    {% else %}
+      <!-- Display a default placeholder image if the user has no photo -->
+      <img src="{% static 'path/to/default/profile/image.png' %}" alt="default profile photo" width="50" height="50">
+    {% endif %}
+    <!-- Rest of your code -->
+
+<form method="post" action="{%url 'logout'%}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% else %}
+<a href="{% url 'register' %}">register</a> If you have an account..
+<a href="{% url "login" %}">Log-in</a> 
+
+{% endif %}
+</span>
+</div>
+<div id="content">
+{% if messages %}
+ <ul class="messages">
+ {% for message in messages %}
+ <li class="{{ message.tags }}">
+ {{ message|safe }}
+ <a href="#" class="close">x</a>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>
+

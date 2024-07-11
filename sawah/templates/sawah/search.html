@@ -1,0 +1,154 @@
+{% load i18n %}
+{% load static %}
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html>
+ <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "matched result" %}</title>
+    <link rel="stylesheet" href="{% static 'sawah/css/main.css'%}">
+
+    <style>
+        .star-rating {
+            font-size: 24px; /* Adjust the size of stars */
+        }
+        
+        .star {
+            color: rgb(248, 150, 21); 
+        }
+        
+
+        .empty-star {
+            color: rgba(221, 156, 82, 0.61);
+        }
+    </style>
+    <!-- bootstrab link -->
+
+</head>
+<body>
+   <div class="body">
+    <section>
+        <div class="header">
+            <div class="container2"   data-aos="fade-up-left"  data-aos-duration="3000">
+                <a href="{%url 'sawah:home'%}" class="logo"  data-aos="fade-up-left"  data-aos-duration="3000" > {% trans "SAWAH"%}</a>
+                <ul class="main-nav">
+                    <li><a href="{% url 'register'%}" class="s1">{% trans "Sign Up" %}</a></li>
+                    <li><a href="#Scan Me" class="s2">{% trans "Scan Me" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container2">
+                <div>
+                    <form action="" method="get" class="input-group" width="400px">
+                        <input type="text" class="form-control " placeholder=" {% trans 'Search Restaurant, hotels, places'%}"
+                        aria-label="Recipient's username" aria-describedby="button-addon2" name="query"> 
+                    </form>
+                </div>
+        </div>
+    </div>
+    </section>
+    <div class="contanair">
+        {% if query %}
+        <div class="e"><h2>{% trans "The matched Results" %}</h2></div>
+        {% for result in results %}
+        {% if result|get_class_name == "Landmark" %}
+        <div class="inline1">
+            <div class="left"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}"><img  src="{{result.image.url}}"></a></div>
+            <div class="right">
+                 <div><h4 class="ii"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}">{{result.name}}</a> <br>{% trans 'Landmark' %}</h4></div>
+                 <div class="star-rating">
+                    {% for i in 5|get_range %}
+                        {% if i <= result.rating %}
+                            <span class="star">&#9733;</span> <!-- Filled star -->
+                        {% else %}
+                            <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                        {% endif %}
+                    {% endfor %}
+                     <div class="spann">
+                         <span class="num1">{{result.rating|floatformat:"1"}}</span>
+                         <span class="num2">{{result.comments}}</span>
+                         <h5 class="s">Comments</h5>
+                     </div>
+                 </div>
+                 <h6 class="op">. best sightseeing     .open now</h6>
+                 <div id="location">
+                    <i class="fa-solid fa-location-dot" id="i"> </i>
+                    <a>{{result.city}} </a>
+                </div>
+            </div>        
+        </div>
+        {% elif result|get_class_name == "Hotel" %}
+        <div class="inline1">   
+            <div class="left"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}"><img  src="{{result.image.url}}"></a></div>
+            <div class="right">
+                 <div><h4 class="ii"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}">{{result.name}}</a> <br>{% trans 'Hotel' %}</h4></div>
+                 <div class="star-rating">
+                    {% for i in 5|get_range %}
+                        {% if i <= result.rating %}
+                            <span class="star">&#9733;</span> <!-- Filled star -->
+                        {% else %}
+                            <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                        {% endif %}
+                    {% endfor %}
+                     <div class="spann">
+                         <span class="num1">{{result.rating|floatformat:"1"}}</span>
+                         <span class="num2">{{result.comments}}</span>
+                         <h5 class="s">{% trans 'Comments' %}</h5>
+                     </div>
+                 </div>
+                 <h6 class="op">{% trans '. best accomadation     .open now' %}</h6>
+                 <div id="location">
+                    <i class="fa-solid fa-location-dot" id="i"> </i>
+                    <a>{{result.city}} </a>
+                </div>
+            </div>         
+        </div>
+        {% elif result|get_class_name == "Restaurant" %}
+        <div class="inline1">
+            <div class="left"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}"><img  src="{{result.image.url}}"></a></div>
+            <div class="right">
+                 <div><h4 class="ii"><a href="{% url 'sawah:hotel_detail' hotel_id=result.pk%}">{{result.name}}</a> <br>{% trans 'Restaurant' %}</h4></div>
+                 <div class="star-rating">
+                    {% for i in 5|get_range %}
+                        {% if i <= result.rating %}
+                            <span class="star">&#9733;</span> <!-- Filled star -->
+                        {% else %}
+                            <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+                        {% endif %}
+                    {% endfor %}
+                     <div class="spann">
+                         <span class="num1">{{result.rating|floatformat:"1"}}</span>
+                         <span class="num2">{{result.comments}}</span>
+                         <h5 class="s">Comments</h5>
+                     </div>
+                 </div>
+                 <h6 class="op">. best breakfast     .open now</h6>
+                 <div id="location">
+                    <i class="fa-solid fa-location-dot" id="i"> </i>
+                    <a>{{result.city}} </a>
+                </div>
+            </div>        
+        </div>
+        {% endif %}
+        {% empty %}
+        <h3>There's no results</h3>
+        {% endfor %}
+        {% endif %}  
+
+
+    </div> 
+
+    
+  
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,465 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sawah/css/hotel_detail.css'%}">
+    <link rel="stylesheet" href="{% static 'sawah/css/normalize.css'%}">   
+</head>
+<body>
+    <!-- start header -->
+   
+        <div class="nav">
+             <h1 class="navbar">SAWAH</h1>
+            <input type="text" class="header " placeholder=" Search for places, resturant and hotels...."
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="nav1">sign in</button>    
+            <button class="nav2">scan me</button>
+        </div>    
+        
+      <hr>
+    <!-- End header -->
+    <div class="c">
+        <button class="c1">Comments</button>
+        <button class="c2">Map</button>
+        <button class="c3">Place imformation</button>
+    </div>
+    <hr>
+    <div class="w">
+        <h1>{{restaurant.name}}</h1>
+        <h4>{{restaurant.city}} Governorte</h4>
+        <h4>Rating: {{restaurant_rating|floatformat:'1'}}</h4>
+        {% if is_favorite %}
+        <a href="{% url 'sawah:remove_from_favorites' content_type_id=item_content_type_id object_id=object_id %}">
+            <button class="btn btn-remove-fav">Remove from Favorites</button>
+        </a>
+        {% else %}
+            <a href="{% url 'sawah:add_to_favorites' content_type_id=item_content_type_id object_id=object_id %}">
+                <button class="btn btn-add-fav">Add to Favorites</button>
+            </a>
+        {% endif %}
+            
+    </div>
+    <div class="E">
+        <img src="{% static 'sawah/images/p1.jpeg'%}"> 
+        <img src="{% static 'sawah/images/p2.jpeg'%}"> 
+        <img src="{% static 'sawah/images/p3.jpeg'%}"> 
+        <img src="{% static 'sawah/images/p4.jpeg'%}"> 
+        <img src="{% static 'sawah/images/p5.jpeg'%}"> 
+    </div>
+    
+    <section class="X">
+        <hr>
+        <h1>You Might Like This</h1>
+        <div class="A">
+            <div class="A1">
+                <img src="{% static 'sawah/images/5.jfif'%}">
+                <p>Girll The Blue <br> resturant </p> 
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div>
+                
+            </div>
+            <div class="A2">
+                <img src="{% static 'sawah/images/6.jfif'%}">
+                <p>Girll The Blue <br> resturant </p> 
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div>
+            </div>
+            <div class="A3">
+                <img src="{% static 'sawah/images/5.jfif'%}">
+                <p>Girll The Blue <br> resturant </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+        </div>
+         <br> <br>
+        <div class="S">
+            <div class="S1">
+                <img src="{% static 'sawah/images/7.jfif'%}">
+                <p>Girll The Blue <br> resturant </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+            <div class="S2">
+                <img src="{% static 'sawah/images/8.jfif'%}">
+                <p>Girll The Blue <br> resturant </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+            <div class="S3">
+                <img src="{% static 'sawah/images/9.jfif'%}">
+                <p>Girll The Blue <br> resturant  </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+        </div>
+         <br><br>
+        <div class="Q">
+            <div class="Q1">
+                <img src="{% static 'sawah/images/10.jfif'%}">
+                <p>Girll The Blue <br> resturant </p> 
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div>
+            </div>
+            <div class="Q2">
+                <img src="{% static 'sawah/images/11.jfif'%}">
+                <p>Girll The Blue <br> resturant  </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+            <div class="Q3">
+                <img src="{% static 'sawah/images/12.jfif'%}">
+                <p>Girll The Blue <br> resturant </p>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                    <span class="star" id="s5" data-rating="5">★</span>
+                    <span class="num11">4.0</span>
+                    <p>breakfast & indian <br> food</p>
+                 </div> 
+            </div>
+        </div>
+        <button class="X1">View More</button>
+        <hr>
+    </section>
+    <h2 class=" b">Restaurant information</h2>
+    <section class="v">
+        
+        <div class="v1">
+          <h3>Contact Info</h3>
+          <p> website</p>
+          <p><br> phone number</p>
+          <p><br> Location</p>
+          <p><br> facebook pabe</p>
+          <p><br> instagram page</p>
+        </div>
+        <div class="v2">
+          <h3>Accommodation Option</h3>
+          <div class="z">
+            <div class="z1">
+                <p> Standard Rooms</p>
+                <p><br> Themed Rooms</p>
+                <p><br> Exclusive Suites</p>
+                <p><br> Family Suites</p>
+                <p><br> Interconnect <br>ing Rooms</p>
+            </div>
+            <div class="z2">
+                <p> Deluxe Rooms</p>
+                <p><br> Apartments</p>
+                <p><br> Villas</p>
+                <p><br> Accessible Rooms</p>
+                <p><br> Penthouse Suites</p>
+            </div>
+            <div class="z3">
+                <p> Suites</p>
+                <p><br> Ex</p>
+                <p><br> Location</p>
+                <p><br> facebook pabe</p>
+                <p><br> instagram page</p>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section class="n">
+        
+        
+        <div class="n2">
+          <h3>Accommodation Option</h3>
+          <div class="o">
+            <div class="o1">
+                <p> Standard Rooms</p>
+                <p><br> Themed Rooms</p>
+                <p><br> Exclusive Suites</p>
+                <p><br> Family Suites</p>
+                <p><br> Interconnect <br>ing Rooms</p>
+            </div>
+            <div class="o2">
+                <p> Deluxe Rooms</p>
+                <p><br> Apartments</p>
+                <p><br> Villas</p>
+                <p><br> Accessible Rooms</p>
+                <p><br> Penthouse Suites</p>
+            </div>
+            <div class="o3">
+                <p> Suites</p>
+                <p><br> Ex</p>
+                <p><br> Location</p>
+                <p><br> facebook pabe</p>
+                <p><br> instagram page</p>
+            </div>
+          </div>
+        </div>
+        <div class="n1">
+            <h3>Contact Info</h3>
+            <p> website</p>
+            <p><br> phone number</p>
+            <p><br> Location</p>
+            <p><br> facebook pabe</p>
+            <p><br> instagram page</p>
+          </div>
+    </section>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.910065095376!2d31.136789615114686!3d29.97923494377563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145833f5e88951c5%3A0x35ccdb2318c11b3b!2sGiza%2C%20Giza%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1627939506163!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section class="p">
+     <h2>Comments</h2>
+     <section class="f">
+        <h3><a href="{% url 'sawah:restaurant_comment' restaurant.id%}">Add a comment</a></h3>
+        <div class="my">
+            <section> 
+
+               <div class="im">
+                    <img class="iii" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                    <h6 class="aml">Amal mohamed</h6>
+                  <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                       <span class="star" data-rating="2">★</span>
+                       <span class="star" data-rating="3">★</span>
+                       <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+                       <span class="num11">4.0 </span>
+                    </div>
+                    
+                </div>  
+            </section>
+            <p class="ddd">30 minutes ago</p>
+            <p class="new">Treaveled on October 2018, 5 Years ago</p>
+           <p class="re"> <strong>Such An Amazing Trip</strong> </p>
+           <p class="uu"> The description of the trip The description of the trip The description of the trip The description<br>
+               of the trip The description of the trip The description of the trip The description of the trip The<br>
+               description </p>
+         </div> 
+
+
+
+         <div class="my">
+            <section> 
+
+               <div class="im6">
+                    <img class="iii6" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                    <h6 class="aml6">Amal mohamed</h6>
+                  <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                       <span class="star" data-rating="2">★</span>
+                       <span class="star" data-rating="3">★</span>
+                       <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+                       <span class="num11">4.0 </span>
+                    </div>
+                    
+                </div>  
+            </section>
+            <p class="ddd6">30 minutes ago</p>
+            <p class="new6">Treaveled on October 2018, 5 Years ago</p>
+           <p class="re6"> <strong>Such An Amazing Trip</strong> </p>
+           <p class="uu6"> The description of the trip The description of the trip The description of the trip The description<br>
+               of the trip The description of the trip The description of the trip The description of the trip The<br>
+               description </p>
+         </div> 
+
+
+
+         <div class="my">
+            <section> 
+
+               <div class="im7">
+                    <img class="iii7" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                    <h6 class="aml7">Amal mohamed</h6>
+                  <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                       <span class="star" data-rating="2">★</span>
+                       <span class="star" data-rating="3">★</span>
+                       <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+                       <span class="num11">4.0 </span>
+                    </div>
+                    
+                </div>  
+            </section>
+            <p class="ddd7">30 minutes ago</p>
+            <p class="new7">Treaveled on October 2018, 5 Years ago</p>
+           <p class="re7"> <strong>Such An Amazing Trip</strong> </p>
+           <p class="uu7"> The description of the trip The description of the trip The description of the trip The description<br>
+               of the trip The description of the trip The description of the trip The description of the trip The<br>
+               description </p>
+         </div> 
+      
+
+
+
+         <div class="my">
+            <section> 
+
+               <div class="im8">
+                    <img class="iii8" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                    <h6 class="aml8">Amal mohamed</h6>
+                  <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                       <span class="star" data-rating="2">★</span>
+                       <span class="star" data-rating="3">★</span>
+                       <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+                       <span class="num11">4.0 </span>
+                    </div>
+                    
+                </div>  
+            </section>
+             <p class="ddd8">30 minutes ago</p>
+             <p class="new8">Treaveled on October 2018, 5 Years ago</p>
+              <p class="re8"> <strong>Such An Amazing Trip</strong> </p>
+             <p class="uu8"> The description of the trip The description of the trip The description of the trip The description<br>
+               of the trip The description of the trip The description of the trip The description of the trip The<br>
+               description </p>
+            </div> 
+
+
+
+
+            <div class="my">
+                <section> 
+    
+                   <div class="im9">
+                        <img class="iii9" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                        <h6 class="aml9">Amal mohamed</h6>
+                      <div class="star-rating2">
+                          <span class="star" data-rating="1">★</span>
+                           <span class="star" data-rating="2">★</span>
+                           <span class="star" data-rating="3">★</span>
+                           <span class="star" id="s4" data-rating="4">★</span>
+                           <span class="star" id="s5" data-rating="5">★</span>
+                           <span class="num11">4.0 </span>
+                        </div>
+                        
+                    </div>  
+                </section>
+                 <p class="ddd9">30 minutes ago</p>
+                 <p class="new9">Treaveled on October 2018, 5 Years ago</p>
+                  <p class="re9"> <strong>Such An Amazing Trip</strong> </p>
+                 <p class="uu9"> The description of the trip The description of the trip The description of the trip The description<br>
+                   of the trip The description of the trip The description of the trip The description of the trip The<br>
+                   description </p>
+                </div> 
+
+
+        <div class="my">
+            <section> 
+
+               <div class="im5">
+                    <img class="iii5" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                    <h6 class="aml5">Amal mohamed</h6>
+                  <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                       <span class="star" data-rating="2">★</span>
+                       <span class="star" data-rating="3">★</span>
+                       <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+                       <span class="num11">4.0 </span>
+                    </div>
+                    
+                </div>  
+            </section>
+             <p class="ddd5">30 minutes ago</p>
+             <p class="new5">Treaveled on October 2018, 5 Years ago</p>
+              <p class="re5"> <strong>Such An Amazing Trip</strong> </p>
+             <p class="uu5"> The description of the trip The description of the trip The description of the trip The description<br>
+               of the trip The description of the trip The description of the trip The description of the trip The<br>
+               description </p>
+            </div> 
+            <div class="my">
+                <section> 
+    
+                   <div class="im9">
+                        <img class="iii9" src="{% static 'sawah/images/img.jpg'%}" alt="">
+                        <h6 class="aml9">Amal mohamed</h6>
+                      <div class="star-rating2">
+                          <span class="star" data-rating="1">★</span>
+                           <span class="star" data-rating="2">★</span>
+                           <span class="star" data-rating="3">★</span>
+                           <span class="star" id="s4" data-rating="4">★</span>
+                           <span class="star" id="s5" data-rating="5">★</span>
+                           <span class="num11">4.0 </span>
+                        </div>
+                        
+                    </div>  
+                </section>
+                 <p class="ddd9">30 minutes ago</p>
+                 <p class="new9">Treaveled on October 2018, 5 Years ago</p>
+                  <p class="re9"> <strong>Such An Amazing Trip</strong> </p>
+                 <p class="uu9"> The description of the trip The description of the trip The description of the trip The description<br>
+                   of the trip The description of the trip The description of the trip The description of the trip The<br>
+                   description </p>
+                </div> 
+
+        
+
+         
+     </section>
+   </section>
+
+
+
+
+
+
+
+
+</body>
+</html>

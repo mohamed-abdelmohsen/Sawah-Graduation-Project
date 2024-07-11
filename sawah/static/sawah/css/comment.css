@@ -1,0 +1,150 @@
+.contanair{
+    background-color:rgba(239, 238, 232, 1) ;
+    width: 850px;
+    height: 680px;
+    box-shadow: 2px 2px 2px 2px rgba(239, 238, 232, 1);
+    margin-left: 300px;
+    padding: 26px;
+    border-radius: 30PX;
+    margin-top: 10px;
+    
+
+
+}
+.main{
+    display: inline-flex;
+    margin-top: 100px ;
+    margin-left: 70px;
+   
+}
+.left{
+    margin-right: 150px;
+    margin-top: 40px;
+    
+    
+}
+
+.in{
+    width:350px;
+    height: 16px;
+    background-color:rgba(239, 238, 232, 1) ;
+    outline: 0;
+    border: 0;
+    border-bottom:2px solid Rgb(1,50,32);
+    padding: 7px;
+    margin: 3px;
+    margin-left: 10px;
+    margin-bottom: 8px;
+    
+}
+.inp{
+   border: 2px  solid Rgb(1,50,32);
+   border-radius: 17px;
+   width: 400px;
+   margin-bottom: 10px;
+   
+  
+
+}
+.inp2{
+    border: 2px  solid  Rgb(1,50,32);
+    border-radius: 17px;
+    width: 400px;
+    margin-bottom: 6px;
+    margin-top: 20px;
+}
+.right{
+    margin-top: 1px;
+}
+.vertical-line{
+    border-left: 1px solid Rgb(1,50,32);
+    height: 350px;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 250px;
+}
+.sub{
+    color:Rgb(1,50,32);
+    margin-top: 33px;
+    margin-left: 110px;
+    background-color: rgb(253, 160, 47);
+    border-radius: 15px;
+    border: 0;
+    width: 130px;
+    height: 30px;
+    box-shadow:1px 1px 2px 2px  rgb(253, 160, 47) ;
+}
+img{
+    width: 200px;
+    height: 210px;
+    border-radius: 15px;
+}
+.vertical-line-small{
+    border-left: 1px solid Rgb(1,50,32);
+    height: 13px;
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 15px;
+}
+.BR{
+    border-radius: 15px;
+    background-color:rgba(239, 238, 232, 1) ;
+    border: 1px solid rgb(111, 84, 84);
+    width: 140px;
+    height: 25px;
+    padding-left: 25px;
+
+}
+h4,h3,p{
+   color:Rgb(1,50,32);
+}
+label{
+    color: Rgb(1,50,32);
+}
+
+
+
+.star-rating {
+    font-size: 35px;
+    cursor: pointer;
+
+}
+
+.star {
+    color: #ccc;
+    transition: color 0.2s;
+   margin-right: 15px;
+}
+
+.star:hover,
+.star.active {
+    color: #FFD700; }
+
+
+
+.tt input[type="radio"] {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing between radio buttons */
+}
+
+.tt label {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between labels */
+    margin-bottom: 0px; /* Reduce the gap after "travel_with" radio buttons */
+}
+
+
+.tt label:last-child {
+    margin-right: 0; /* Remove margin from the last label to avoid extra space */
+}
+
+
+
+
+
+
+
+
+
+
+

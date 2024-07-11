@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture</title>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poltawski+Nowy&family=Poppins&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&family=Poltawski+Nowy&display=swap"
+        rel="stylesheet">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="{% static 'sawah/css/scan_result.css'%}">
+    <link rel="stylesheet" href="{% static 'sawah/css/normalize.css'%}">
+
+    <!-- font Awesome -->
+    <link rel="stylesheet" href="{% static 'sawah/css/all.min.css'%}">
+
+    <!-- bootstrab link -->
+    <link rel="stylesheet" href="{% static 'sawah/css/bootstrap.min.css'%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-oJq2OeYpexyYwv/DfN1o4y4DlQwcehi7qQxMVx9+AMxrNfbY2i0OBlcIMMp6Jb1HTsS9U5cysclbVGmuwXVhEA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function toggleLike(icon) {
+          icon.classList.toggle('active');
+        }
+        </script>
+        <style>
+            video {
+                margin: 60px auto; /* Adjust top margin as needed */
+                width: 600px;
+                height: 500px;
+                display: block;
+                text-align: center; /* Center horizontally */
+            }
+            canvas {
+                margin: 60px auto; /* Adjust top margin as needed */
+                width: 600px;
+                height: 500px;
+                display: block;
+                text-align: center; /* Center horizontally */
+            }
+            
+            
+            
+            
+        </style>
+</head>
+<body>
+    <section>
+    <div class="header">
+        <div class="container"   data-aos="fade-up-left"  data-aos-duration="3000">
+            <a href="{% url 'sawah:home' %}" class="logo"  data-aos="fade-up-left"  data-aos-duration="3000" > SAWAH</a>
+            <ul class="main-nav">
+                <div class="container">
+                    <div class="input-group mx-auto " style="width: 400px;">
+                        <input type="text" class="form-control "  placeholder= " search places,restaurant and hotel..">
+                    </div>
+                </div> 
+                <li><a href="#Sign Up" class="s1">Sign Up</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    <video id="video" width="600" height="500" autoplay></video>
+    <canvas id="canvas" width="600" height="500" style="display:none;"></canvas>
+    <script>
+        const scanFaceUrl = "{% url 'sawah:scan_face_view' %}";
+        const csrfToken = "{{ csrf_token }}";  // Add the CSRF token to the template context
+
+    </script>
+    <script src="{% static 'sawah/js/scan.js' %}"></script>
+</section>
+</body>
+</html>

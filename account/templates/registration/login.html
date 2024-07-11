@@ -1,0 +1,58 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% trans 'LOG IN' %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/login.css' %}">
+</head>
+
+<body>
+
+<div class="bbb" data-aos="fade-up-left" data-aos-duration="3000">
+    <div class="demo">
+        <a href="{% url 'sawah:home' %}"><button class="btn">&times;</button></a>
+    </div>
+
+    <h5 data-aos="fade-up-right" data-aos-duration="3000"><b>{% trans 'LOGIN' %} </b><a href="{% url 'register' %}">{% trans "You don't have an account?" %}</a></h5>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+
+
+        <input class="c" type="text" placeholder="Email Address" data-aos="fade-up-right" data-aos-duration="3000" name="username">
+        <input class="c" type="password" placeholder="password" data-aos="fade-up-right" data-aos-duration="3000" name="password">
+
+
+        <h4 class="mm">OR</h4>
+        <div class="ccc" data-aos="fade-up-right" data-aos-duration="3000">
+            <div class="mmm"   ></div>
+            <input class="cc" type="checkbox">
+            <p>{% trans 'Keep me logged in'%}</p>
+        </div>
+
+        <button class="c1" data-aos="fade-up-right" data-aos-duration="3000" type="submit">{% trans 'LOGIN'%} </button>
+        <a class="password-reset-link" href="{% url 'password_reset' %}" data-aos="fade-up-right" data-aos-duration="3000">{% trans 'Forget Password?' %}</a>
+    </form>
+
+
+</div>
+
+<div class="m">
+    <h5 class="f" data-aos="fade-up-left" data-aos-duration="3000"><b class="ff">{% trans 'Continue' %} </b> {% trans 'with' %} </h5>
+    <a href="{% url "social:begin" "facebook" %}" class="fff" data-aos="fade-up-left" data-aos-duration="3000">{% trans 'FACEBOOK' %}</a>
+    <a href="{% url "social:begin" "twitter" %}" class="z" data-aos="fade-up-left" data-aos-duration="3000">{% trans 'TWITTER' %}</a>
+    <a href="{% url "social:begin" "google-oauth2" %}" class="zz" data-aos="fade-up-left" data-aos-duration="3000">{% trans 'GOOGLE' %}</a>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+</html>

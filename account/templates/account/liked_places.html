@@ -1,0 +1,419 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'account/css/liked_places.css'%}">
+    <!-- font aweasome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script>
+      function toggleLike(icon) {
+        icon.classList.toggle('active');
+      }
+      </script>
+
+    <style>
+        .star-rating {
+            font-size: 24px; /* Adjust the size of stars */
+        }
+        
+        .star {
+            color: rgb(248, 150, 21); 
+        }
+        
+
+        .empty-star {
+            color: rgba(221, 156, 82, 0.61);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h1>SAWAH</h1>
+        <button class="n1" ><strong>Scan Me</strong></button>
+        
+    </div>
+        <hr>
+    <div class="A">
+      <br><br><br><br><br><br><br><br><br><br><br>
+      <h2><a href="{% url 'edit' %}">Edit Your Profile</a></h2>
+      <br><br><br><br><br><br><br><br><br><br><br>   
+    </div>
+    <hr class="A1">
+
+    <hr class="A2">
+    <div class="B">
+      <a href="hhh" id="B1" >Like</a>
+      <button class="B2"> Comments</button>  
+      <form method="post" action="{%url 'logout'%}">
+        {% csrf_token %}
+        <button type="submit" class="B3">Log Out</button>
+    </form> 
+    </div>
+    <hr class="A3">
+   <h2 class="v">What You Liked</h2>
+
+
+   <section class="g">
+        <!--  start foces Liked Places.......................................  --> 
+  <div id="likes">
+    <div class="inline">
+      <h3>Liked Places </h3>
+      <i class="fa-sharp fa-solid fa-xmark"></i>
+     
+    </div>
+    <div class="dlike">
+    
+     <div class="sec1">
+        {% for landmark, rating in favorite_landmarks_with_ratings|slice:':3' %}
+        <section class="card-body">
+            <a href="{{ landmark.get_absolute_url }}"><img class="imgforcard" src="{{ landmark.image.url }}"></a>
+            <i class="fas fa-heart heart-icon" onclick="toggleLike(this)"></i>
+          <div class="s1">
+            <h3>{{ landmark.name|truncatechars:15 }} <br> Vibe</h3>
+            <div class="star-rating">
+              {% for i in 5|get_range %}
+              {% if i <= rating %}
+                <span class="star">&#9733;</span> <!-- Filled star -->
+              {% else %}
+                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+              {% endif %}
+              {% endfor %}
+              <div class="spann">
+                <span class="num1">{{ rating|floatformat:'1'|default:'0' }}</span>
+                <span class="num2"> ٠1034</span>
+              </div>
+            </div>
+            <h6 class="op">Best breakfast & Indian food</h6>
+            <div id="location">
+              <i class="fa-solid fa-location-dot" id="i"></i>
+              <a>{{landmark.city}}</a>
+            </div>
+          </div>
+        </section>
+        {% endfor %}
+     </div>
+     <div class="sec1">
+        {% for landmark, rating in favorite_landmarks_with_ratings|slice:'3:6' %}
+        <section class="card-body">
+            <a href="{{ landmark.get_absolute_url }}"><img class="imgforcard" src="{{ landmark.image.url }}"></a>
+            <i class="fas fa-heart heart-icon" onclick="toggleLike(this)"></i>
+          <div class="s1">
+            <h3>{{ landmark.name|truncatechars:15 }} <br> Vibe</h3>
+            <div class="star-rating">
+              {% for i in 5|get_range %}
+              {% if i <= rating %}
+                <span class="star">&#9733;</span> <!-- Filled star -->
+              {% else %}
+                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+              {% endif %}
+              {% endfor %}
+              <div class="spann">
+                <span class="num1">{{ rating|floatformat:'1'|default:'0' }}</span>
+                <span class="num2"> ٠1034</span>
+              </div>
+            </div>
+            <h6 class="op">Best breakfast & Indian food</h6>
+            <div id="location">
+              <i class="fa-solid fa-location-dot" id="i"></i>
+              <a>{{landmark.city}}</a>
+            </div>
+          </div>
+        </section>
+        {% endfor %}
+     </div>
+     <div class="sec1">
+        {% for landmark, rating in favorite_landmarks_with_ratings|slice:'6:9' %}
+        <section class="card-body">
+          <a href="{{ landmark.get_absolute_url }}"><img class="imgforcard" src="{{ landmark.image.url }}"></a>
+          <i class="fas fa-heart heart-icon" onclick="toggleLike(this)"></i>
+          <div class="s1">
+            <h3>{{ landmark.name|truncatechars:15 }} <br> Vibe</h3>
+            <div class="star-rating">
+              {% for i in 5|get_range %}
+              {% if i <= rating %}
+                <span class="star">&#9733;</span> <!-- Filled star -->
+              {% else %}
+                <span class="star empty-star">&#9733;</span> <!-- Empty star -->
+              {% endif %}
+              {% endfor %}
+              <div class="spann">
+                <span class="num1">{{ rating|floatformat:'1'|default:'0' }}</span>
+                <span class="num2"> ٠1034</span>
+              </div>
+            </div>
+            <h6 class="op">Best breakfast & Indian food</h6>
+            <div id="location">
+              <i class="fa-solid fa-location-dot" id="i"></i>
+              <a>{{landmark.city}}</a>
+            </div>
+          </div>
+        </section>
+        {% endfor %}          
+     </div> 
+    </div>
+  </div>
+   
+</div>
+       <!--  start foces Liked Places.......................................  -->      
+
+
+    <div class="g2">
+      <a href="{% url 'liked_restaurants' user_id=user.id %}"><h3>Liked Restaurants</h3></a>
+       <hr>
+        <div class="l1">
+            
+       <div class="k">
+        <img src="{% static 'account/images/r1.jpg'%}">  
+        <h4>Pyramid area</h4>
+       </div>
+       <div class="k2">
+        <img src="{% static 'account/images/r2.jpg'%}">
+        <h4>The Pyramid</h4>
+       </div>
+        </div>
+    </div>
+  </section>
+  <!-- start liked hotels................ -->
+   <div class="g3">
+    <a href="{% url 'liked_hotels' user_id=user.id %}"><h3>Liked Hotels</h3></a>
+    <hr>
+      <div class="l2">
+        <div class="o">
+        <img src="{% static 'account/images/h1.jpg'%}">  
+        <h4>Pyramid area</h4>
+        </div>
+        <div class="o2">
+        <img src="{% static 'account/images/h2.jpg'%}">
+        <h4>The Pyramid</h4>
+        </div>
+      </div>
+   </div>
+   <!-- end liked hotels................ -->
+   <hr class="x">
+
+   <h2 class="w">Your Comments</h2>
+   <section class="q">
+         <div class="q1">
+               <h3>Where To Go</h3>
+               <hr>
+               <div class="my">
+                <section> 
+
+                   <div class="im">
+                    {% if user.profile.photo %}
+                    <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+                {% else %}
+                    <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+                {% endif %}
+
+                      <h6 class="aml">{{user.username}}</h6>
+                      <div class="star-rating2">
+                          <span class="star" data-rating="1">★</span>
+                           <span class="star" data-rating="2">★</span>
+                           <span class="star" data-rating="3">★</span>
+                           <span class="star" id="s4" data-rating="4">★</span>
+                          <span class="star" id="s5" data-rating="5">★</span>
+
+                         <div class="spann2">
+                             <span class="num11">5.0 </span>
+                         </div>
+         
+                        </div>
+                        
+                    </div>  
+
+
+                </section>
+               <p class="re"> the most comfortable i have ever seen good food</p>
+
+             </div>
+            </section>
+           
+           <section > 
+              <div class="im1">
+
+                {% if user.profile.photo %}
+                <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+            {% else %}
+                <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+            {% endif %}
+
+                  <h6 class="aml">{{user.username}}</h6>
+                 <div class="star-rating2">
+                      <span class="star" data-rating="1">★</span>
+                      <span class="star" data-rating="2">★</span>
+                      <span class="star" data-rating="3">★</span>
+                      <span class="star" id="s4" data-rating="4">★</span>
+                     <span class="star" id="s5" data-rating="5">★</span>
+     
+     
+                       <div class="spann21">
+                            <span class="num111">5.0 </span>
+                       </div>
+                   </div>
+          
+           </div></section>
+           <p class="re1"> the most comfortable i have ever seen good food</p>
+           
+     
+           </div>
+     
+           </section> 
+           
+           <section > 
+            <div class="im3">
+
+              {% if user.profile.photo %}
+              <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+          {% else %}
+              <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+          {% endif %}
+
+                <h6 class="aml">{{user.username}}</h6>
+               <div class="star-rating2">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                   <span class="star" id="s5" data-rating="5">★</span>
+   
+   
+                     <div class="spann23">
+                          <span class="num111">5.0 </span>
+                     </div>
+                 </div>
+        
+         </div></section>
+         <p class="re3"> the most comfortable i have ever seen good food</p>
+         
+   
+         </div>
+   
+         </section> 
+
+           <section > 
+            <div class="im2">
+
+              {% if user.profile.photo %}
+              <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+          {% else %}
+              <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+          {% endif %}
+
+                <h6 class="aml">{{user.username}}</h6>
+               <div class="star-rating2">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" id="s4" data-rating="4">★</span>
+                   <span class="star" id="s5" data-rating="5">★</span>
+   
+   
+                     <div class="spann22">
+                          <span class="num112">5.0 </span>
+                     </div>
+                 </div>
+        
+         </div></section>
+         <p class="re2"> the most comfortable i have ever seen good food</p>
+         
+   
+         </div>
+   
+         </section> 
+         </div>
+             
+        </div>
+
+
+      <div class="q2">
+          <h3>Food Resturant</h3>
+          <hr>
+         <div>
+            <section> 
+
+                <div class="im">
+                  {% if user.profile.photo %}
+                  <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+              {% else %}
+                  <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+              {% endif %}
+
+                    <h6 class="aml">{{user.username}}</h6>
+                   <div class="star-rating2">
+                       <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" id="s4" data-rating="4">★</span>
+                       <span class="star" id="s5" data-rating="5">★</span>
+
+                      <div class="spann2">
+                          <span class="num11">5.0 </span>
+                      </div>
+      
+                     </div>
+                     
+                 </div>  
+
+
+             </section>
+             <p class="re"> the most comfortable i have ever seen good food</p>
+
+           </div>
+          </section> 
+        </div>
+      </div>
+   </section>
+
+   <div class="q3">
+    <h3>Hotels</h3>
+   <hr>
+   <div>
+    <section > 
+        <div class="im">
+
+          {% if user.profile.photo %}
+          <img class="iii" src="{{ user.profile.photo.url }}" alt="Profile Photo">
+      {% else %}
+          <img src="{% static 'sawah/images/default.jpeg'%}" alt="Default Profile Photo">
+      {% endif %}
+
+            <h6 class="aml">{{user.username}}</h6>
+           <div class="star-rating2">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" id="s4" data-rating="4">★</span>
+               <span class="star" id="s5" data-rating="5">★</span>
+
+
+                 <div class="spann2">
+                      <span class="num11">5.0 </span>
+                 </div>
+             </div>
+    
+     </div></section>
+     <p class="re"> the most comfortable i have ever seen good food</p>
+     
+
+     </div>
+    
+     </section> 
+   </div> 
+
+
+
+
+
+    
+     
+</body>
+</html>

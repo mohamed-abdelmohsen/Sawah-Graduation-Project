@@ -1,0 +1,345 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-01 03:20+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\account\templates\account\register.html:22
+#: .\account\templates\account\register.html:38
+msgid "SIGN UP"
+msgstr ""
+
+#: .\account\templates\account\register.html:22
+msgid "You already have account?"
+msgstr ""
+
+#: .\account\templates\account\register.html:26
+msgid "Username"
+msgstr ""
+
+#: .\account\templates\account\register.html:27
+msgid "Email Address"
+msgstr ""
+
+#: .\account\templates\account\register.html:28
+msgid "Password"
+msgstr ""
+
+#: .\account\templates\account\register.html:29
+msgid "Confirm Password"
+msgstr ""
+
+#: .\account\templates\account\register.html:30
+msgid "OR"
+msgstr ""
+
+#: .\account\templates\account\register.html:49
+#: .\account\templates\registration\login.html:46
+msgid "Continue"
+msgstr ""
+
+#: .\account\templates\account\register.html:49
+msgid "With"
+msgstr ""
+
+#: .\account\templates\account\register.html:51
+#: .\account\templates\registration\login.html:47
+msgid "FACEBOOK"
+msgstr ""
+
+#: .\account\templates\account\register.html:52
+#: .\account\templates\registration\login.html:48
+msgid "TWITTER"
+msgstr ""
+
+#: .\account\templates\account\register.html:53
+#: .\account\templates\registration\login.html:49
+msgid "GOOGLE"
+msgstr ""
+
+#: .\account\templates\registration\login.html:8
+msgid "LOG IN"
+msgstr ""
+
+#: .\account\templates\registration\login.html:21
+#: .\account\templates\registration\login.html:38
+msgid "LOGIN"
+msgstr ""
+
+#: .\account\templates\registration\login.html:21
+msgid "You don't have an account?"
+msgstr ""
+
+#: .\account\templates\registration\login.html:35
+msgid "Keep me logged in"
+msgstr ""
+
+#: .\account\templates\registration\login.html:39
+msgid "Forget Password?"
+msgstr ""
+
+#: .\account\templates\registration\login.html:46
+msgid "with"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_complete.html:15
+#: .\account\templates\registration\password_reset_confirm.html:15
+#: .\account\templates\registration\password_reset_done.html:15
+#: .\account\templates\registration\password_reset_form.html:14
+#: .\sawah\templates\sawah\home.html:97 .\sawah\templates\sawah\search.html:36
+msgid "SAWAH"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_complete.html:19
+msgid "Password reset complete"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_complete.html:20
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: .\account\templates\registration\password_reset_complete.html:21
+msgid "Log in"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:19
+msgid "Enter new password"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:20
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:24
+msgid "New Password:"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:25
+msgid "New password"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:31
+msgid "Confirm password:"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:32
+msgid "Confirm password"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_confirm.html:37
+msgid "Change my password"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_done.html:19
+msgid "Password reset sent"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_done.html:20
+msgid ""
+"We have emailed you instructions for setting your Password,if an account "
+"exists with the email you entered.You should receive them shortly."
+msgstr ""
+
+#: .\account\templates\registration\password_reset_done.html:21
+msgid ""
+"If you don't receive an email, please make sure you have entered the address "
+"you registered with,and c heck your spam folder"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_form.html:7
+#: .\account\templates\registration\password_reset_form.html:17
+msgid "Password Reset"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_form.html:18
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: .\account\templates\registration\password_reset_form.html:22
+msgid "Email address:"
+msgstr ""
+
+#: .\account\templates\registration\password_reset_form.html:26
+msgid "Reset my Password"
+msgstr ""
+
+#: .\project\settings.py:128
+msgid "English"
+msgstr "Inglés"
+
+#: .\project\settings.py:129
+msgid "Arabic"
+msgstr ""
+
+#: .\sawah\models.py:10 .\sawah\models.py:25
+msgid "name"
+msgstr ""
+
+#: .\sawah\models.py:26
+msgid "slug"
+msgstr ""
+
+#: .\sawah\models.py:28
+msgid "description"
+msgstr ""
+
+#: .\sawah\models.py:29
+msgid "image"
+msgstr ""
+
+#: .\sawah\models.py:30
+msgid "available"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:108 .\sawah\templates\sawah\home.html:168
+#: .\sawah\templates\sawah\search.html:39
+msgid "Scan Me"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:122
+msgid "Sign In"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:133
+msgid "Welcome To"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:134
+msgid "EYGPT"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:141
+msgid "Search"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:148
+msgid "Where To Go"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:149
+msgid "Restaurants"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:150
+msgid "Hotels"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:161
+msgid "Discover the story behind"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:162
+msgid "Egyptian'smonuments."
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:165
+msgid "Now You Can Scan Any Egyption"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:166
+msgid "Momments And Listen To His Story"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:182 .\sawah\templates\sawah\home.html:206
+msgid "The Most Popular Cities In Egypt"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:199 .\sawah\templates\sawah\home.html:223
+msgid "View More"
+msgstr ""
+
+#: .\sawah\templates\sawah\home.html:251
+msgid "The Most Popular Hotels"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:16
+#: .\sawah\templates\sawah\landmark_comment.html:16
+#: .\sawah\templates\sawah\restaurant_comment.html:16
+msgid "Tell us your story about"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:32
+#: .\sawah\templates\sawah\landmark_comment.html:32
+#: .\sawah\templates\sawah\restaurant_comment.html:32
+msgid "what would you rate your trip?"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:41
+#: .\sawah\templates\sawah\landmark_comment.html:41
+#: .\sawah\templates\sawah\restaurant_comment.html:41
+msgid "who did you travel with?"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:48
+#: .\sawah\templates\sawah\landmark_comment.html:48
+#: .\sawah\templates\sawah\restaurant_comment.html:48
+msgid "when did you travel with?"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:50
+#: .\sawah\templates\sawah\landmark_comment.html:50
+#: .\sawah\templates\sawah\restaurant_comment.html:50
+msgid "what is the best time to go?"
+msgstr ""
+
+#: .\sawah\templates\sawah\hotel_comment.html:62
+#: .\sawah\templates\sawah\landmark_comment.html:62
+#: .\sawah\templates\sawah\restaurant_comment.html:62
+msgid "Upload"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:11
+msgid "matched result"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:38
+msgid "Sign Up"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:48
+msgid "Search Restaurant, hotels, places"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:57
+msgid "The matched Results"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:63
+msgid "Landmark"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:89
+msgid "Hotel"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:101
+msgid "Comments"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:104
+msgid ". best accomadation     .open now"
+msgstr ""
+
+#: .\sawah\templates\sawah\search.html:115
+msgid "Restaurant"
+msgstr ""
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
